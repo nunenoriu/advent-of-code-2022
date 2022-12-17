@@ -1,5 +1,4 @@
 class DayEleven:
-
     def __init__(self):
 
         self.monkeys = [
@@ -59,6 +58,7 @@ class DayEleven:
         for argument in self.mod_arguments:
             result *= argument
         return result
+
     def calculate(self):
         round = 0
         lcn = self.get_lcn()

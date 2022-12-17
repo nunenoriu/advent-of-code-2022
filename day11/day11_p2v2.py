@@ -1,16 +1,3 @@
-# Requirements:
-# starting items  - list worry level
-# operation - shows how worry level changes when item is inspected
-# test - shows how monkey uses worry level to throw item next
-# after inspection, before test, if inspection didn't cause damage worrylevel/3 and floored
-# monkeys goes in turn
-# floor - each monkey takes a single turn
-# when item is thrown, it goes at the end of the list
-# if no items, turn ends
-import math
-from math import floor
-
-
 class DayEleven:
 
     def __init__(self):
@@ -72,42 +59,16 @@ class DayEleven:
         for argument in self.mod_arguments:
             result *= argument
         return result
-
     def calculate(self):
-        # print('ops {}'.format(self.operations))
-        round = 0
-        lcm = 23 * 19 * 17 * 13
-        while round < 20:
-            round += 1
-            # print('round {} self.monkeys {}'.format(round, self.monkeys))
-            for index, monkey in enumerate(self.monkeys):
-                # print('round {} monkey {} monkey {}'.format(round, index, monkey))
-                while len(monkey) > 0:
-                    item = monkey.pop(0)
-                    self.activity[index] += 1
-                    new_number = floor(self.operations[index](item) / 3)
-                    # print('round {} index {} number {}'.format(round, index, new_number))
-                    if new_number % self.mod_arguments[index] == 0:
-                        self.monkeys[self.true_monkeys[index]].append(new_number)
-                    else:
-                        self.monkeys[self.false_monkeys[index]].append(new_number)
-        print(self.activity)
-
-    def calculate2(self):
-        # print('ops {}'.format(self.operations))
         round = 0
         lcn = self.get_lcn()
         while round < 10000:
             round += 1
-            # print('round {} self.monkeys {}'.format(round, self.monkeys))
             for index, monkey in enumerate(self.monkeys):
-                # print('round {} monkey {} monkey {}'.format(round, index, monkey))
                 while len(monkey) > 0:
                     item = monkey.pop(0)
                     self.activity[index] += 1
-                    # new_number = floor(self.operations[index](item) / 3) % lcn
                     new_number = self.operations[index](item) % lcn
-                    # print('round {} index {} number {}'.format(round, index, new_number))
                     if new_number % self.mod_arguments[index] == 0:
                         self.monkeys[self.true_monkeys[index]].append(new_number)
                     else:
@@ -124,7 +85,5 @@ if __name__ == '__main__':
     day = DayEleven()
     print("Day eleven exercise!")
     day.assign_ops()
-    day.calculate2()
+    day.calculate()
     day.get_result()
-
-# [99, 97, 8, 103]

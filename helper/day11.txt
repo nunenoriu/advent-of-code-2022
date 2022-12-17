@@ -1,0 +1,7 @@
+M 0:
+    WL 79
+    OP WL * 19 = 1501
+    BO OP/3 500
+    BO % 23 == 0
+        false
+        throw to 3
